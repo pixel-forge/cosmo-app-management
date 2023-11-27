@@ -15,24 +15,24 @@ export class Cosmo_AppManager_FE
 
 	constructor() {
 		super();
-		if(Cosmo_AppManager_FE.instance)
+		if (Cosmo_AppManager_FE.instance)
 			throw new Error('Can not create more than 1 instance of Cosmo_AppManager_FE!');
 
 		Cosmo_AppManager_FE.instance = this;
 	}
 
-	init = () => {
+	init() {
 		Cosmo_ClientLogger.addClient(Cosmo_LogClient_Browser);
 		super.init();
 
-		if(!this.app) {
+		if (!this.app) {
 			this.logError('Must use setApp before calling init!');
 			throw new Error('Did not use setApp before init');
 		}
 
 		//Create Root Element
 		let rootEl = document.getElementById('root');
-		if(!rootEl) {
+		if (!rootEl) {
 			rootEl = document.createElement('div');
 			rootEl.setAttribute('id', 'root');
 			document.body.appendChild(rootEl);
@@ -44,5 +44,6 @@ export class Cosmo_AppManager_FE
 
 	public setApp = (app: React.ReactNode) => {
 		this.app = app;
-	}
+		return this;
+	};
 }
