@@ -1,1 +1,1 @@
-export type Test = {};
+export * from './api-definition';
